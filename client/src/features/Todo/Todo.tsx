@@ -1,6 +1,30 @@
 import React from "react";
 import TodoList from "./TodoList";
 
+type FilterOption = {
+  id: number;
+  title: string;
+  value: string;
+};
+
+const TODO_FILTER_OPTION: FilterOption[] = [
+  {
+    id: 1,
+    title: "Latest",
+    value: "latest",
+  },
+  {
+    id: 2,
+    title: "Yesterday",
+    value: "yesterday",
+  },
+  {
+    id: 3,
+    title: "Last Week",
+    value: "last-week",
+  },
+];
+
 const Todo = () => {
   // Fetch data here
 
@@ -24,12 +48,13 @@ const Todo = () => {
         {/* Filter button */}
         <div>
           <select name="filter" id="todo-filter" className="rounded-lg p-2">
-            <option value="dog">Dog</option>
-            <option value="cat">Cat</option>
-            <option value="hamster">Hamster</option>
-            <option value="parrot">Parrot</option>
-            <option value="spider">Spider</option>
-            <option value="goldfish">Goldfish</option>
+            {TODO_FILTER_OPTION.map((option) => {
+              return (
+                <option value={option.value} key={option.id}>
+                  {option.title}
+                </option>
+              );
+            })}
           </select>
         </div>
       </div>
