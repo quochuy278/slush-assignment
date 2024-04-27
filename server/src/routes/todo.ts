@@ -5,4 +5,4 @@ const router = Router();
 
 router.get("/todos", getTodos);
 
-export default router;
+export const todoRoutes: Router = router;
