@@ -1,21 +1,25 @@
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import Todo from "./features/Todo/Todo";
+import Layout from "./components/Layout";
+import ProtectedRoute from "./components/ProtectedRoutes";
+import HomePage from "./pages/HomePage";
+import SignInPage from "./pages/SignInPage";
+import useAuth from "./store/useAuth";
 
 function App() {
+  const { user } = useAuth();
+
   return (
-    <div className="flex flex-col min-h-screen w-screen">
-      {" "}
-      {/* Set min-height for viewport */}
-      <Header />
-      <div className="flex-grow bg-purple-light p-4 justify-center flex">
-        {" "}
-        {/* TodoList container */}
-        <Todo />
-      </div>
-      <Footer />
-    </div>
+    <Routes>
+      {/* Routes that protected */}
+      <Route element={<ProtectedRoute canAccess={user !== null} />}>
+        <Route element={<Layout />}>
+          <Route path="/" element={<HomePage />} /> {/* 👈 Renders at /app/ */}
+        </Route>
+      </Route>
+
+      <Route path="/signin" element={<SignInPage />} />
+    </Routes>
   );
 }
 
