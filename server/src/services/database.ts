@@ -16,8 +16,6 @@ const dbConfig = {
   database: process.env.POSTGRES_DATABASE,
 };
 
-const client = new Client(dbConfig);
-
 /**
  * Checks if the 'users' and 'todos' tables exist in the database and executes a migration script if necessary.
  *
@@ -84,4 +82,4 @@ async function connectToDatabase() {
   return client;
 }
 
-export { client , connectToDatabase, checkAndMigrate };
+export { dbConfig, connectToDatabase, checkAndMigrate };
