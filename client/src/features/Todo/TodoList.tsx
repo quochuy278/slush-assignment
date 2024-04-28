@@ -1,18 +1,50 @@
-import React from "react";
+import { useState } from "react";
 
-const TodoList = () => {
-  return <div className="w-full h-full p-4 bg-purple-light">
-    {/* Ttitle */}
-    <div className="text-center">
-        <span className="text-base lg:text-4xl sm:text-xl md:text-2xl">Todo List</span>
+import { Todo } from "./Todo";
+import TodoItem from "./TodoItem";
+import UpdateModal from "./components/UpdateModal";
+import DeleteModal from "./components/DeleteModal";
+
+type TodoListProps = {
+  todos: Todo[];
+};
+
+const TodoList = (props: TodoListProps) => {
+  const [todo, setTodo] = useState<Todo | null>(null);
+  const [updateModal, setUpdateModal] = useState<boolean>(false);
+  const [deleteModal, setDeleteModal] = useState<boolean>(false);
+  const { todos } = props;
+
+  const onOpenUpdateModal = (todo: Todo) => {
+    setTodo(todo);
+    setUpdateModal(true);
+  };
+
+  const onOpenDeleteModal = (todo: Todo) => {
+    setDeleteModal(true);
+    setTodo(todo);
+  };
+
+  return (
+    <div className="w-full h-full p-4 gap-3 grid">
+      {todos.map((todo) => {
+        return (
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            update={onOpenUpdateModal}
+            delete={onOpenDeleteModal}
+          />
+        );
+      })}
+      {todo && updateModal && (
+        <UpdateModal todo={todo} onClose={() => setUpdateModal(false)} />
+      )}
+      {todo && deleteModal && (
+        <DeleteModal todo={todo} onClose={() => setDeleteModal(false)} />
+      )}
     </div>
-
-    {/* Render todo list */}
-
-    <div>
-      Todo list
-    </div>
-  </div>;
+  );
 };
 
 export default TodoList;
