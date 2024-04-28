@@ -1,13 +1,12 @@
-import { Request, Response } from "express";
-import {
-  addTodo,
-  getAllTodos,
-  deleteTodo as deleteTodoFromdb,
-  updateTodo as updateTodoFromDb,
-} from "../services/repository/todo/todo";
+import { Response } from "express";
 import { v4 as uuidv4 } from "uuid";
 import { TodoDto } from "../services/repository/todo/dto/todo.dto";
-import { read } from "fs";
+import {
+  addTodo,
+  deleteTodo as deleteTodoFromdb,
+  getAllTodos,
+  updateTodo as updateTodoFromDb,
+} from "../services/repository/todo/todo";
 
 const getTodos = async (request: any, response: Response) => {
   const { userId } = request.user;
@@ -74,7 +73,7 @@ const updateTodo = async (request: any, response: Response) => {
   };
 
   try {
-    const todo = await updateTodoFromDb(todoId, updateData);
+    await updateTodoFromDb(todoId, updateData);
 
     response.status(200).json({
       message: "Update todo successfully",
@@ -85,10 +84,7 @@ const updateTodo = async (request: any, response: Response) => {
 };
 
 const deleteTodo = async (request: any, response: Response) => {
-  const { userId } = request.user;
-
   const { todoId } = request.params;
-  console.log("🚀 ~ deleteTodo ~ todoId:", todoId);
 
   try {
     await deleteTodoFromdb(todoId);
@@ -101,4 +97,4 @@ const deleteTodo = async (request: any, response: Response) => {
   }
 };
 
-export { getTodos, createTodo, updateTodo, deleteTodo };
+export { createTodo, deleteTodo, getTodos, updateTodo };

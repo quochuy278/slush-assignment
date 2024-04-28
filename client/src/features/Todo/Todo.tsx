@@ -40,7 +40,6 @@ const Todo = () => {
   const [todos, setTodos] = useState<Todo[] | null>(null);
 
   const [createModal, setCreateModal] = useState<boolean>(false);
-  console.log("🚀 ~ Todo ~ todos:", todos);
 
   // Fetch data here
   const { data, isSuccess } = useQuery({

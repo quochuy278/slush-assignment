@@ -136,7 +136,7 @@ async function deleteTodo(todoId: number): Promise<void> {
 
     await client.query(query, [todoId]);
 
-    console.log(`Todo with ID ${todoId} deleted successfully.`); // Optional logging
+    logger.info(`Todo with ID ${todoId} deleted successfully.`); // Optional logging
   } catch (error) {
     logger.error("Error deleting todo:", error);
     throw error; // Re-throw the error for further handling

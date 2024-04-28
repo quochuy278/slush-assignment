@@ -8,7 +8,6 @@ import { v4 as uuidv4 } from "uuid";
 
 const signIn = async (request: Request, response: Response) => {
   const { email, password } = request.body;
-  console.log("🚀 ~ signIn ~ email, password:", email, password);
 
   const user = await getUserByEmail(email);
 

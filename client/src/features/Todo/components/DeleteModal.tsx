@@ -1,7 +1,6 @@
-import React from "react";
-import { Todo } from "../Todo";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteTodo } from "../../../api/todo";
+import { Todo } from "../Todo";
 
 type ModalProps = {
   todo: Todo;
@@ -11,7 +10,7 @@ type ModalProps = {
 const DeleteModal = (props: ModalProps) => {
   const queryClient = useQueryClient();
   const { todo, onClose } = props;
-  console.log("🚀 ~ Modal ~ todo:", todo);
+
   const { mutate } = useMutation({
     mutationKey: ["todo"],
     mutationFn: deleteTodo,

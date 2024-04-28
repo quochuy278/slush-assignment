@@ -20,10 +20,9 @@ const SignInForm = () => {
   const { saveUserInfor } = useAuth();
   const navigate = useNavigate();
   // Declare sign in mutation service
-  const { mutate, isPending, isSuccess } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: signIn,
-    onSuccess(data, variables, context) {
-      console.log("🚀 ~ onSuccess ~ data:", data);
+    onSuccess(data) {
       saveUserInfor(data);
 
       navigate("/", { replace: true });

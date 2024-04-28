@@ -47,7 +47,7 @@ const UpdateModal = (props: ModalProps) => {
     ready: boolean;
   }) => {
     const { name, description, ready } = values;
-    console.log("🚀 ~ UpdateModal ~ values:", values);
+
     const updateData = {
       ...todo,
       name: name,
