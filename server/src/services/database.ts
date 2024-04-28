@@ -1,4 +1,4 @@
-import { Client } from "pg";
+import { Client, ClientConfig } from "pg";
 import dotenv from "dotenv";
 import logger from "./logger";
 
@@ -8,12 +8,13 @@ dotenv.config();
 
 const migrationPath = "./src/services/migrations/migration.sql";
 
-const dbConfig = {
+const dbConfig: ClientConfig = {
   user: process.env.POSTGRES_USERNAME,
   password: process.env.POSTGRES_PASSWORD,
   host: process.env.POSTGRES_HOST,
   port: process.env.POSTGRES_PORT ? parseInt(process.env.POSTGRES_PORT) : 5433,
   database: process.env.POSTGRES_DATABASE,
+  ssl: process.env.NODE_ENV === "production" ? true : false,
 };
 
 /**
@@ -29,7 +30,6 @@ const dbConfig = {
  */
 async function checkAndMigrate(): Promise<void> {
   const client = new Client(dbConfig);
-
   try {
     await client.connect();
 
@@ -61,7 +61,8 @@ async function checkAndMigrate(): Promise<void> {
       logger.info("Tables already exist, skipping migration.");
     }
   } catch (error) {
-    logger.error(error);
+    logger.info(dbConfig);
+    logger.error(`checkAndMigrate: ${error}`);
   } finally {
     await client.end();
   }
@@ -76,7 +77,7 @@ async function connectToDatabase() {
       logger.info("database connected");
     })
     .catch((error) => {
-      logger.error(error);
+      logger.error(`connectToDatabase: ${error}`);
     });
 
   return client;
