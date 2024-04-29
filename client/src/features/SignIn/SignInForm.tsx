@@ -32,7 +32,7 @@ const SignInForm = () => {
     mutate({
       email: values.email,
       password: values.password,
-    }) as any;
+    });
   };
 
   const renderError = (message: string) => (

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import TodoList from "./TodoList";
 import { useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 import { fetchTodos } from "../../api/todo";
+import TodoList from "./TodoList";
 import CreateModal from "./components/CreateModal";
 
 type FilterOption = {

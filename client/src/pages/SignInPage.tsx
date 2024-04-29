@@ -1,7 +1,7 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import SignInForm from "../features/SignIn/SignInForm";
 import useAuth from "../store/useAuth";
-import { useNavigate } from "react-router-dom";
 
 const SignInPage = () => {
   const navigate = useNavigate();

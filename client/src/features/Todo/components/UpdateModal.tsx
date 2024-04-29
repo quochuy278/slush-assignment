@@ -1,10 +1,8 @@
-import React from "react";
-import { Todo } from "../Todo";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
-import { read } from "fs";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateTodo } from "../../../api/todo";
+import { Todo } from "../Todo";
 
 type ModalProps = {
   todo: Todo;
