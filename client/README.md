@@ -1,30 +1,24 @@
-# React + TypeScript + Vite
+## Client-side Libraries
+This project utilizes the following libraries for the client-side functionalities:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- React: JavaScript library for building user interfaces (https://legacy.reactjs.org/)
+- Vite: Next generation frontend build tool (https://vitejs.dev/)
+- Zustand: Minimal, ultra-fast state management library (https://github.com/pmndrs/zustand)
+- React Query: Powerful data fetching library for React applications (https://www.youtube.com/watch?v=mg1slc6GU8U)
+- Tailwind CSS: Utility-first CSS framework for rapid UI development (https://tailwindcss.com/docs/installation)
+- Formik: React library for building and managing forms (https://formik.org/)
+- Yup: Object schema validation library (https://github.com/jquense/yup)
 
-Currently, two official plugins are available:
+## User Functionalities
+This application allows users to manage their todos through the following functionalities:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Authentication:
 
-## Expanding the ESLint configuration
+- Users can log in to the application using appropriate credentials.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Todo Management:
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- Users can add new todo items.
+- The application fetches and displays existing todos.
+- Users can edit the details of existing todos.
+- Users can delete unwanted todos.
