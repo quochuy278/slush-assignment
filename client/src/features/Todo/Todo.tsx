@@ -44,8 +44,8 @@ const Todo = () => {
   // Fetch data here
   const { data, isSuccess } = useQuery({
     queryKey: ["todos"],
-    queryFn: fetchTodos,
-    retry: 4,
+    queryFn: fetchTodos, 
+    retry: 5,
   });
 
   useEffect(() => {
@@ -95,8 +95,8 @@ const Todo = () => {
       {/* Render todo list */}
 
       <div className="mt-5 bg-gray-500 w-full h-full rounded-lg p-4">
-        {todos && <TodoList todos={todos} />}
-        {!todos && <p>Nothing here</p>}
+        {todos && todos.length > 0 && <TodoList todos={todos} />}
+        {(!todos || todos.length === 0) && <p>Nothing here</p>}
       </div>
       {createModal && <CreateModal onClose={() => setCreateModal(false)} />}
     </div>
