@@ -4,9 +4,8 @@ import { Todo } from "../features/Todo/Todo";
 
 const baseURL = import.meta.env.VITE_APP_API_URL;
 
-const accessToken = useAuth.getState().user?.accessToken;
-
 const fetchTodos = async () => {
+  const accessToken = useAuth.getState().user?.accessToken;
   try {
     const result = await axios.get(`${baseURL}/todos`, {
       headers: {
@@ -25,6 +24,7 @@ const createTodo = async (data: {
   description: string;
   ready: boolean;
 }) => {
+  const accessToken = useAuth.getState().user?.accessToken;
   try {
     const result = await axios.post(`${baseURL}/todo`, data, {
       headers: {
@@ -39,6 +39,7 @@ const createTodo = async (data: {
 };
 
 const updateTodo = async (data: Todo) => {
+  const accessToken = useAuth.getState().user?.accessToken;
   try {
     const result = await axios.patch(`${baseURL}/todo/${data.id}`, data, {
       headers: {
@@ -53,6 +54,7 @@ const updateTodo = async (data: Todo) => {
 };
 
 const deleteTodo = async (data: Todo) => {
+  const accessToken = useAuth.getState().user?.accessToken;
   try {
     const result = await axios.delete(`${baseURL}/todo/${data.id}`, {
       headers: {
